@@ -1,0 +1,12 @@
+apiVersion: v2
+# This is the helm api version, it's 2 for helm 3 and 1 for helm 2
+name: guestbook
+# The chart name
+appVersion: "2.0"
+# the version of the application
+description: A Helm chart for Guestbook 1.0 
+# the application release description
+version: 0.1.0
+# the chart version (you can change the application version without touching the chart), this refers to a change in the chart's file structure
+type: application
+# application for applications and attribute for non applications charts
