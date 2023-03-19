@@ -8,3 +8,9 @@ You can find the author repository here :
 
 Helm official site :
 - https://helm.sh/
+
+The order of the examples are as below :
+- [GuestBook Frontend](guestbook_frontend/readme.md)
+- [GuestBook Full Platform](guestbook_full/readme.md)
+- [Helm Templates](helm_templates/readme.md)
+- [Helm Functions and Pipeline](helm_functions_pipeline/readme.md)
