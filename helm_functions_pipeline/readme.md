@@ -8,7 +8,7 @@ Helm gives us the possibility to add some logic to our charts via functions and 
 
 You can use both, but in most of cases devops uses the pipeline syntax :
 
-![Functions and Pipelines](images/function_pipeline.PNG)
+![Functions and Pipelines](images/function_pipeline.PNG =350x350)
 
 For functions, it's like in other languages but the difference with Helm is that to pass an argument you can just put a space between the function name and its parameters. For example :
 - **quote value** (wich calls the quote functions with value as argument)
