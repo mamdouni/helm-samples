@@ -118,6 +118,29 @@ helm install guestbook guestbook
 ````
 
 Well, if you run this example you'll notice an issue in the backend pod.
+
+````shell
+k get pods
+````
+
+````log
+NAME                                  READY   STATUS             RESTARTS         AGE
+guestbook-backend-669f8d789d-rxtzh    0/1     CrashLoopBackOff   29 (3m54s ago)   16h
+guestbook-database-7c7d57b6db-sqrnp   1/1     Running            0                16h
+guestbook-frontend-546c4969f6-ldpzw   1/1     Running            0                16h
+````
+
+````shell
+ k logs guestbook-backend-669f8d789d-rxtzh
+````
+
+````log
+
+Error: getaddrinfo ENOTFOUND mongodb mongodb:27017
+    at GetAddrInfoReqWrap.onlookup [as oncomplete] (dns.js:67:26)
+````
+
+
 Actually, the backend retrieves the mongodb connection url from its secrets :
 
 ````log

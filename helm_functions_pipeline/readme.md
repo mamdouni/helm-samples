@@ -73,7 +73,102 @@ In this video, we will talk about logical operators, how to use the if else and 
 
 <img src="images/logical_operators.PNG" data-canonical-src="images/logical_operators.PNG" width="700" height="550" />
 
-![Conditions](images/conditions.PNG)
+<img src="images/conditions.PNG" data-canonical-src="images/conditions.PNG" width="700" height="550" />
 
-![Loops](images/loops.PNG)
+<img src="images/loops.PNG" data-canonical-src="images/loops.PNG" width="700" height="550" />
 
+But how access the hosts data from the paths range ?
+
+Find this in the next section.
+
+### Using Variables
+
+Here's how you can declare a variable :
+<img src="images/variables.PNG" data-canonical-src="images/variables.PNG" width="700" height="550" />
+
+But you can find more about how to use variables and global variables in this video :
+- https://app.pluralsight.com/course-player?clipId=d7d4d9d2-ced8-43ff-a31b-4fd3736c0f42
+
+## Helper Functions and Sub-templates
+
+With Helm, you can define sub-templates functions that can be reusable.
+For example, the last **if else** example can be used in more than one template without copying/pasting it all the time.
+
+This is called helper functions, you can find more details about how to use them here :
+- https://app.pluralsight.com/course-player?clipId=5e87feb1-621f-4797-bc66-6c2084d519cd
+
+We gonna talk ,in the same video, also about :
+- .helmignore file
+- _helpers.tpl files
+- library charts (efficient way to use helpers)
+- difference between **template** and **include**
+- **notes.txt** file
+
+## Demos
+
+### Demo 1 : Resolve backend issue
+
+In the :
+- **backend/templates/_helpers.tpl** : We will define the *backend.fullname* variable which will the release+chart tuncated if the user did not override this with *fullnameOverride*
+- **rest of files** : We replaced the *{{ .Release.Name }}-{{ .Chart.Name }}* with the *backend.fullname* as it contains our logic and if we replace this logic the changes will be done on all the files
+- **backend/values.yaml** : we split the mongo uri into multiple parameters to control easily this data. By defining them in the sub-chart, we can easily override them from the parent chart.
+- **backend/templates/backend-secret.yaml** : The mongodb-uri will be generated based on the mongo parameters from the *values.yaml* file. The mongo host will be **$.Release.Name "-" .dbchart** as we said before.
+- **values.yaml** : this contains the admin/password to be used in the chart (will override the one declared in the backend)
+
+
+You can find the demo of this chart in this video :
+- https://app.pluralsight.com/course-player?clipId=a55c4832-af30-4d18-a55d-d4d4eba2dc85
+
+
+````shell
+helm template guestbook
+````
+
+If it's OK.
+
+````shell
+helm upgrade guestbook guestbook
+````
+
+````log
+Release "guestbook" has been upgraded. Happy Helming!
+NAME: guestbook
+LAST DEPLOYED: Sun Mar 19 12:10:07 2023
+NAMESPACE: default
+STATUS: deployed
+REVISION: 2
+TEST SUITE: None
+````
+
+````shell
+k get pods
+````
+
+````log
+NAME                                  READY   STATUS    RESTARTS   AGE
+guestbook-backend-669f8d789d-tztfk    1/1     Running   0          7s
+guestbook-database-7c7d57b6db-sqrnp   1/1     Running   0          16h
+guestbook-frontend-546c4969f6-ldpzw   1/1     Running   0          16h
+````
+
+````shell
+k logs guestbook-backend-669f8d789d-tztfk
+````
+
+````log
+Guestbook API listening on port 3000!
+connected to the mongoDB !
+````
+
+### Demo 2 : Install multiple releases
+
+To install multiple releases one for developers and one for testers that are completelly seperate but in the same namespaces, you have to check this demo :
+- https://app.pluralsight.com/course-player?clipId=a55c4832-af30-4d18-a55d-d4d4eba2dc85
+
+The github demo files can be found here :
+- https://github.com/phcollignon/helm3/tree/master/lab9_helm_template_begin
+- https://github.com/phcollignon/helm3/tree/master/lab9_helm_template_final
+
+The demo explains :
+- how to make the ingress backend and frontend optionals
+- how to add a global ingress based on the release name (which will generates cnmaes based on the release name like dev.frontend.minikube.local)
