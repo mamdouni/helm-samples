@@ -10,7 +10,7 @@ Helm official site :
 - https://helm.sh/
 
 The order of the examples are as below :
-- [GuestBook Frontend](guestbook_frontend/readme.md)
-- [GuestBook Full Platform](guestbook_full/readme.md)
-- [Helm Templates](helm_templates/readme.md)
-- [Helm Functions and Pipeline](helm_functions_pipeline/readme.md)
+- [GuestBook Frontend](guestbook_frontend)
+- [GuestBook Full Platform](guestbook_full/)
+- [Helm Templates](helm_templates)
+- [Helm Functions and Pipeline](helm_functions_pipeline)
