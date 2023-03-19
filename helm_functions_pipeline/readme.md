@@ -10,6 +10,10 @@ You can use both, but in most of cases devops uses the pipeline syntax :
 
 ![Functions and Pipelines](images/function_pipeline.PNG =350x350)
 
+<img src="images/function_pipeline.PNG" data-canonical-src="images/function_pipeline.PNG" width="500" height="350" />
+
+![Functions and Pipelines](images/function_pipeline.PNG | width=100)
+
 For functions, it's like in other languages but the difference with Helm is that to pass an argument you can just put a space between the function name and its parameters. For example :
 - **quote value** (wich calls the quote functions with value as argument)
 - **value | quote** (with pipeline you can just use)
