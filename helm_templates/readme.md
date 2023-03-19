@@ -117,4 +117,26 @@ Well, there are no bugs. Let's install the release :
 helm install guestbook guestbook
 ````
 
+Well, if you run this example you'll notice an issue in the backend pod.
+Actually, the backend retrieves the mongodb connection url from its secrets :
+
+````log
+secret:
+  mongodb_uri: "bW9uZ29kYjovL2FkbWluOnBhc3N3b3JkQG1vbmdvZGI6MjcwMTcvZ3Vlc3Rib29rP2F1dGhTb3VyY2U9YWRtaW4="
+#              "mongodb://admin:password@mongodb:27017/guestbook?authSource=admin"
+````
+
+But the **mongodb** is no more the service name of the mongo database. Actually, it's :
+
+````log
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-{{ .Chart.Name }}
+  ...
+````
+
+which is **guestbook-database** in our case. but how can we inform the backend that the url has changed and how to retrieve it after the database deployment ?
+
+That's what we gonna see in the next module **Functions and pipelines**.
 
