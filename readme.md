@@ -14,6 +14,7 @@ The order of the examples are as below :
 - [GuestBook Full Platform](guestbook_full/)
 - [Helm Templates](helm_templates)
 - [Helm Functions and Pipeline](helm_functions_pipeline)
+- [Publishing Charts](publishing_charts)
 
 ## Installing Helm
 
