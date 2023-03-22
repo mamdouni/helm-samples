@@ -350,6 +350,33 @@ database:
   enabled: true
 ````
 
+don't forget to add the conditions to your dependencies before :
+
+````yaml
+apiVersion: v2
+name: guestbook
+appVersion: "2.0"
+description: A Helm chart for Guestbook 2.0 
+version: 1.2.2
+type: application
+dependencies:
+  - name: backend
+    version: ~1.2.2
+    repository: http://localhost:8080
+    condition: backend.enabled
+    tags:
+      - api
+  - name: frontend
+    version: ^1.2.0
+    repository: http://localhost:8080
+  - name: database
+    version: ~1.2.2
+    repository: http://localhost:8080
+    condition: database.enabled
+    tags:
+      - api
+````
+
 Let's install a frontend release :
 
 ````shell
@@ -382,7 +409,7 @@ Let's install a frontend release :
 helm install dev guestbook --set tags.api=false
 ````
 
-don't forget to tag your dependencies before :
+don't forget to tag your dependencies before (and remove conditions) :
 
 ````yaml
 apiVersion: v2
@@ -395,7 +422,6 @@ dependencies:
   - name: backend
     version: ~1.2.2
     repository: http://localhost:8080
-    condition: backend.enabled
     tags:
       - api
   - name: frontend
@@ -404,7 +430,6 @@ dependencies:
   - name: database
     version: ~1.2.2
     repository: http://localhost:8080
-    condition: database.enabled
     tags:
       - api
 ````
