@@ -15,6 +15,7 @@ The order of the examples are as below :
 - [Helm Templates](helm_templates)
 - [Helm Functions and Pipeline](helm_functions_pipeline)
 - [Publishing Charts](publishing_charts)
+- [Using Charts](using_charts)
 
 ## Installing Helm
 
