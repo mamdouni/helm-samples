@@ -14,7 +14,7 @@ to access the **helm hub repository**. This is a registry with a lot of third pa
 You can just search for a project and you can find a list of charts available for that project and their repositories.
 
 
-<img src="images/helm_hub.PNG" data-canonical-src="images/helm_hub.PNG" width="700" height="550" />
+<img src="images/helm_hub.png" data-canonical-src="images/helm_hub.png" width="900" height="550" />
 
 You can install the chart maintained by the Bitnami organization via :
 
